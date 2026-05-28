@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    display: grid;
+    place-content: center;
+}
+
+body {
+    width: 100dvmin;
+    height: 100dvmin;
+    display: grid;
+    place-content: center;
+}
+
+header {
+    display: grid;
+    place-content: center;
+}
+
+main {
+    display: grid;
+    place-content: center;
+}
+
+footer {
+    display: grid;
+    place-content: center;
+}
+
+svg {
+    width: 90dvmin;
+    height: 90dvmin;
+    background: aliceblue;
+}
