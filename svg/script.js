@@ -3,6 +3,7 @@
 const origin = Math.min(window.innerWidth, window.innerHeight) * 0.49;
 
 const svg = document.querySelector("svg");
+let n = 10;
 
 const circleGenerator = (r) => {
   // SVGのcircle要素を作成
@@ -23,6 +24,15 @@ const circleGenerator = (r) => {
   svg.appendChild(circle);
 };
 
-for (let i = 1; i < 200; i++) {
-  circleGenerator(i);
-}
+circleGenerator(300);
+
+svg.addEventListener("click", () => {
+  svg.innerHTML = "";
+  n--;
+  if (n < 2) {
+    n = 10;
+  }
+  for (let i = 1; i <= 300; i += n) {
+    circleGenerator(i);
+  }
+});
