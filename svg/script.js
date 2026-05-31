@@ -1,60 +1,28 @@
 "use strict";
 
-const origin = Math.min(window.innerWidth, window.innerHeight) * 0.45;
+const origin = Math.min(window.innerWidth, window.innerHeight) * 0.49;
 
 const svg = document.querySelector("svg");
 
-//
-// 関数本体
-//
+const circleGenerator = (r) => {
+  // SVGのcircle要素を作成
+  const circle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
 
-const graph = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "polyline",
-);
+  // 属性を設定
+  circle.setAttribute("cx", origin);
+  circle.setAttribute("cy", origin);
+  circle.setAttribute("r", r);
+  circle.setAttribute("fill", "none");
+  circle.setAttribute("stroke", "black");
+  circle.setAttribute("stroke-width", 0.5);
 
-let points = "";
+  // SVGへ追加
+  svg.appendChild(circle);
+};
 
-for (let x = -200; x < 200; x += 10) {
-  const y = -(x ** 2) / 100;
-
-  points += `${origin + x},${origin + y} `;
-}
-
-graph.setAttribute("points", points);
-
-graph.setAttribute("stroke", "black");
-graph.setAttribute("stroke-width", "0.5");
-graph.setAttribute("fill", "none");
-
-svg.appendChild(graph);
-
-//
-// 接線
-//
-
-for (let x = 0; x <= 200; x += 20) {
-  const y = -(x ** 2) / 100;
-
-  // 微分
-  const slope = -x / 50;
-
-  // 接線の長さ
-  const dx = 200;
-
-  // y = mx
-  const dy = slope * dx;
-
-  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-
-  line.setAttribute("x1", origin - dx);
-  line.setAttribute("y1", origin - dy);
-
-  line.setAttribute("x2", origin + x + dx);
-  line.setAttribute("y2", origin + y + dy);
-
-  line.setAttribute("stroke", "red");
-  line.setAttribute("stroke-width", "0.5");
-
-  svg.appendChild(line);
+for (let i = 1; i < 200; i++) {
+  circleGenerator(i);
 }
